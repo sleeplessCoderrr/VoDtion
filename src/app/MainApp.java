@@ -1,15 +1,15 @@
-package main;
+package app;
 
-import app.LoginForm;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.LoginForm;
 
-public class Main extends Application{
+public class MainApp extends Application{
 		
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		LoginForm loginForm = new LoginForm("Welcome Back to VoDtion", "Enter you credentials");
+		view.LoginForm loginForm = new LoginForm("Welcome Back to VoDtion", "Enter you credentials");
 		Scene login = new Scene(loginForm.getRoot(), 400, 300);
 		primaryStage.setTitle("LoginPage");
 		primaryStage.setScene(login);

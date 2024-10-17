@@ -1,5 +1,5 @@
 module VoDtion {
-	exports main;
+	exports app;
 	requires javafx.graphics;
 	requires javafx.controls;
 }
