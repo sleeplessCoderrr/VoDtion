@@ -3,12 +3,16 @@ package model;
 public class User {
 	
 	private String username;
+	private String email;
 	private String password;
+	private String salt;
 	
-	public User(String username, String password) {
+	public User(String username, String email, String password, String salt) {
 		super();
 		this.username = username;
+		this.email = email;
 		this.password = password;
+		this.salt = salt;
 	}
 
 	public String getUsername() {
@@ -17,6 +21,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -27,5 +39,12 @@ public class User {
 		this.password = password;
 	}
 	
+	public String getSalt() {
+		return salt;
+	}
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 
 }

@@ -1,5 +1,6 @@
 package view;
 
+import controller.AuthController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class LoginForm {
+public class LoginView {
 	//Stage
 	private Stage stage;
 	
@@ -30,8 +31,11 @@ public class LoginForm {
 	private PasswordField passwordField;
 	private Button btnSignIn;
 	
-	public LoginForm(Stage stage) {
+	private AuthController authController;
+	
+	public LoginView(Stage stage) {
 		this.stage = stage;
+		this.authController = new AuthController(this.stage);
 		this.run();
 	}
 	
@@ -46,12 +50,11 @@ public class LoginForm {
 	private void createComponent() {
 		titleLabel = new Label("Welcome Back to VoDtion");
 		subtTitle = new Label("Enter your credentials here");
-		emailLabel = new Label("Email");
+		emailLabel = new Label("Email or username");
 		passwordLabel = new Label("Password");
 		emailField = new TextField();
 		passwordField = new PasswordField();
 		btnSignIn = new Button("Sign In");
-		
 	}
 	
 	private void setStyling() {
@@ -88,7 +91,7 @@ public class LoginForm {
 	
 	private void setEvent() {
 		btnSignIn.setOnAction(e -> {
-			System.out.println("berhasil");
+			authController.handleLogin(this.getEmail(), this.getPassword());
 		});
 	}
 	
