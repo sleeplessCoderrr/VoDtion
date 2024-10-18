@@ -15,18 +15,19 @@ public class AuthController {
 	private UserService userService;
 	
 	//!!!todo figure out how to save userlist !!!
-	ArrayList<User> userList = new ArrayList<>();
+	ArrayList<User> userList;
 	
 	public AuthController(Stage stage) {
 		this.stage = stage;
 		this.userService = new UserService();
+		
+		userList = new ArrayList<>();
 	}
 	
 	public void handleLogin(String text, String password) {
-		User user = userService.getUser(userList, text);
 		
-		String username = user.getUsername();
-		String salt = user.getSalt();
+		String username = text;
+		String salt = userService.getSalt(userList, username);
 		String hashPassword = null;
 		try {
 			hashPassword = Encryption.hashPassword(password, salt);
@@ -35,6 +36,8 @@ public class AuthController {
 		} catch (InvalidKeySpecException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 }
