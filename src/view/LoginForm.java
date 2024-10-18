@@ -12,8 +12,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 public class LoginForm {
+	//Stage
+	private Stage stage;
+	
 	//Layout Manager
 	private BorderPane root = new BorderPane();
 	private GridPane fieldContainer = new GridPane();
@@ -26,27 +30,34 @@ public class LoginForm {
 	private PasswordField passwordField;
 	private Button btnSignIn;
 	
-	public LoginForm(String tittle, String subTitle) {
-		titleLabel = new Label(tittle);
-		subtTitle = new Label(subTitle);
-		emailLabel = new Label("Email");
-		passwordLabel = new Label("Password");
-		emailField = new TextField();
-		passwordField = new PasswordField();
-		btnSignIn = new Button("Sign In");
+	public LoginForm(Stage stage) {
+		this.stage = stage;
 		this.run();
 	}
 	
 	private void run() {
+		this.createComponent();
 		this.arrange();
 		this.setStyling();
 		this.setAllignment();
 		this.setEvent();		
 	}
 	
+	private void createComponent() {
+		titleLabel = new Label("Welcome Back to VoDtion");
+		subtTitle = new Label("Enter your credentials here");
+		emailLabel = new Label("Email");
+		passwordLabel = new Label("Password");
+		emailField = new TextField();
+		passwordField = new PasswordField();
+		btnSignIn = new Button("Sign In");
+		
+	}
+	
 	private void setStyling() {
 		titleLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 24));
 		subtTitle.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+		BorderPane.setMargin(titleLabel, new Insets(80, 0, 0, 0));
 	}
 	
 	private void arrange() {
@@ -76,7 +87,6 @@ public class LoginForm {
 	}
 	
 	private void setEvent() {
-		BorderPane.setMargin(titleLabel, new Insets(80, 0, 0, 0));
 		btnSignIn.setOnAction(e -> {
 			System.out.println("berhasil");
 		});

@@ -9,9 +9,9 @@ public class MainApp extends Application{
 		
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		view.LoginForm loginForm = new LoginForm("Welcome Back to VoDtion", "Enter you credentials");
+		view.LoginForm loginForm = new LoginForm(primaryStage);
 		Scene login = new Scene(loginForm.getRoot(), 400, 300);
-		primaryStage.setTitle("LoginPage");
+		primaryStage.setTitle("VoDtion");
 		primaryStage.setScene(login);
 		primaryStage.show();	
 	}
