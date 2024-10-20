@@ -33,6 +33,7 @@ public class LoginView {
 	
 	private AuthController authController;
 	
+	@SuppressWarnings("exports")
 	public LoginView(Stage stage) {
 		this.stage = stage;
 		this.authController = new AuthController(this.stage);
@@ -95,6 +96,7 @@ public class LoginView {
 		});
 	}
 	
+	@SuppressWarnings("exports")
 	public BorderPane getRoot() {
 		return this.root;
 	}

@@ -17,6 +17,7 @@ public class AuthController {
 	//!!!todo figure out how to save userlist !!!
 	ArrayList<User> userList;
 	
+	@SuppressWarnings("exports")
 	public AuthController(Stage stage) {
 		this.stage = stage;
 		this.userService = new UserService();
@@ -36,7 +37,6 @@ public class AuthController {
 		} catch (InvalidKeySpecException e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 
