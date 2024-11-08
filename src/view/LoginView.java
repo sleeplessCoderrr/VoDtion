@@ -16,24 +16,18 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class LoginView {
-	//Stage
 	private Stage stage;
-	
-	//Layout Manager
-	private BorderPane root = new BorderPane();
-	private GridPane fieldContainer = new GridPane();
-	private FlowPane buttonContainer = new FlowPane();
-	private VBox vBox = new VBox();
-	
-	//Component
-	private Label titleLabel, subtTitle, emailLabel, passwordLabel;
+	private final BorderPane root = new BorderPane();
+	private final GridPane fieldContainer = new GridPane();
+	private final FlowPane redirectContainer = new FlowPane();
+	private final VBox titleBox = new VBox();
+	private final VBox bottomBox = new VBox();
+	private Label titleLabel , emailLabel, passwordLabel, redirectMessage, redirectToogle;
 	private TextField emailField;
 	private PasswordField passwordField;
-	private Button btnSignIn;
-	
-	private AuthController authController;
-	
-	@SuppressWarnings("exports")
+	private Button btnSignIn, btnSignInGoogle;
+	private final AuthController authController;
+
 	public LoginView(Stage stage) {
 		this.stage = stage;
 		this.authController = new AuthController(this.stage);
@@ -45,55 +39,66 @@ public class LoginView {
 		this.arrange();
 		this.setStyling();
 		this.setAllignment();
-		this.setEvent();		
+		this.setEvent();
+
+		return;
 	}
 	
 	private void createComponent() {
 		titleLabel = new Label("Welcome Back to VoDtion");
-		subtTitle = new Label("Enter your credentials here");
 		emailLabel = new Label("Email or username");
 		passwordLabel = new Label("Password");
+		redirectMessage = new Label("Don't have an account?");
+		redirectToogle = new Label("Sign up");
+
 		emailField = new TextField();
 		passwordField = new PasswordField();
+
 		btnSignIn = new Button("Sign In");
+		btnSignInGoogle = new Button("Sign In Google");
+
+		return;
 	}
 	
 	private void setStyling() {
 		titleLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 24));
-		subtTitle.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
 		BorderPane.setMargin(titleLabel, new Insets(80, 0, 0, 0));
+
+		return;
 	}
 	
 	private void arrange() {
-		//Entering to HBox
-		vBox.getChildren().add(titleLabel);
-		vBox.getChildren().add(subtTitle);
+		titleBox.getChildren().add(titleLabel);
 		
-		//Entering component to gridPane
 		fieldContainer.add(emailLabel, 0, 0);
 		fieldContainer.add(emailField, 0, 1);
 		fieldContainer.add(passwordLabel, 0, 2);
 		fieldContainer.add(passwordField, 0, 3);
-		
-		//Entering Button to flowPane
-		buttonContainer.getChildren().add(btnSignIn);
-		
-		//Entering all into root
-		root.setTop(vBox);
+
+		redirectContainer.getChildren().addAll(redirectMessage, redirectToogle);
+		bottomBox.getChildren().addAll(btnSignIn, btnSignInGoogle, redirectContainer);
+
+		root.setTop(titleBox);
 		root.setCenter(fieldContainer); 
-		root.setBottom(buttonContainer);
+		root.setBottom(bottomBox);
+
+		return;
 	}
 	
 	private void setAllignment() {
 		BorderPane.setAlignment(titleLabel, Pos.TOP_CENTER);
 		fieldContainer.setAlignment(Pos.CENTER);
-		buttonContainer.setAlignment(Pos.CENTER);
+		redirectContainer.setAlignment(Pos.CENTER);
+
+		return;
 	}
 	
 	private void setEvent() {
 		btnSignIn.setOnAction(e -> {
 			authController.handleLogin(this.getEmail(), this.getPassword());
 		});
+
+		return;
 	}
 	
 	@SuppressWarnings("exports")

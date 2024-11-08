@@ -9,8 +9,7 @@ public class UserService {
 	public String getSalt(ArrayList<User> userList, String username) {
 		int isValid = searchUser(userList, username);
 		if(isValid >= -1) {
-			int i = isValid;
-			return userList.get(i).getSalt();
+            return userList.get(isValid).getSalt();
 		}
 		return "";
 	}
